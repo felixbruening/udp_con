@@ -29,15 +29,15 @@ int main()
 	memset(&sock, 0, sizeof(struct sockaddr_in));
 	memset(&storage, 0, sizeof(struct sockaddr_in));
 
-	if( (sockfd = socket(PF_INET, SOCK_DGRAM, 0)) < 0 )
+	if( (sockfd = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0 )
 	{
 		printf("Error socket\n");
 		return 0;
 	}
 	sock.sin_family = AF_INET;
 	sock.sin_port = htons(PORT);
-	sock.sin_addr.s_addr = inet_addr("127.0.0.1");
-
+	//sock.sin_addr.s_addr = inet_addr("127.0.0.1");
+	sock.sin_addr.s_addr = htonl(INADDR_ANY);
 	if( bind(sockfd, (struct sockaddr*)&sock, sizeof(sock)) < 0 )
 	{
 		printf("Error while binding\n");
