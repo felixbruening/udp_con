@@ -28,6 +28,7 @@ int main()
 	memset((char*)&sock, 0, sizeof(sock));
 	sock.sin_family = AF_INET;
 	sock.sin_port = htons(PORT);
+	sock.sin_addr.s_addr = inet_addr("192.168.178.29");
 
 	sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
